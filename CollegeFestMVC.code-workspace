@@ -1,0 +1,16 @@
+{
+  "folders": [
+	{
+		"path": "../../CollegeFestMVC"
+	},
+	{
+		"name": "HospitalAppointmentSystem",
+		"path": "../../HospitalAppointmentSystem-20261021T133343Z-1-001/HospitalAppointmentSystem"
+	},
+	{
+		"name": "HospitalAppointmentMVC",
+		"path": "."
+	}
+],
+  "settings": {}
+}

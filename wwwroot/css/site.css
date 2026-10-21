@@ -1,0 +1,22 @@
+html { min-height: 100%; }
+body { background: #f6f8fc; color: #19253b; min-height: 100vh; }
+main { min-height: calc(100vh - 145px); }
+.hero { background: linear-gradient(120deg, #eaf3ff 0%, #f0edff 100%); border: 1px solid #e1eaff; }
+.hero-icon { display: inline-flex; align-items: center; justify-content: center; width: 96px; height: 96px; border-radius: 28px; color: white; font-size: 3rem; background: linear-gradient(145deg, #2d6cdf, #7259d9); box-shadow: 0 12px 28px #4b6acb33; }
+.doctor-card { border-radius: 18px; transition: transform .18s ease, box-shadow .18s ease; }
+.doctor-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px #17255412 !important; }
+.doctor-avatar { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 15px; background: #e8f0ff; color: #225fca; font-size: 1.5rem; }
+.fee-line { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; color: #667085; font-size: .92rem; }
+.fee-line strong { color: #19253b; white-space: nowrap; }
+.fee-line.total { border-top: 1px solid #edf0f5; margin-top: 4px; padding-top: 12px; color: #344b75; }
+.fee-line.total strong { color: #215fca; font-size: 1.05rem; }
+.detail-card { max-width: 820px; margin: auto; border-radius: 20px; }
+.detail-tile { display: flex; flex-direction: column; gap: 5px; background: #f7f9fd; border: 1px solid #edf0f6; border-radius: 12px; padding: 16px; height: 100%; }
+.detail-tile span { color: #667085; font-size: .9rem; }
+.detail-tile strong { font-size: 1.2rem; }
+.total-tile { background: #eef4ff; border-color: #dbe7ff; }
+.total-tile strong { color: #215fca; }
+.card { border-radius: 16px; overflow: hidden; }
+.btn { border-radius: 9px; }
+.form-control { border-radius: 9px; padding: .7rem .8rem; }
+footer { background: #fff; }

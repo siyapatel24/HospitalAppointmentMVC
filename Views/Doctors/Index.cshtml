@@ -1,0 +1,58 @@
+@model List<Doctor>
+@{
+    ViewData["Title"] = "Doctors";
+}
+<section class="hero p-4 p-md-5 mb-4 rounded-4">
+    <div class="row align-items-center">
+        <div class="col-lg-8">
+            <p class="text-uppercase small fw-bold text-primary mb-2">Your health, our priority</p>
+            <h1 class="display-6 fw-bold">Find the right doctor for you</h1>
+            <p class="lead mb-0">Browse specialists, view transparent consultation charges, and request an appointment.</p>
+        </div>
+        <div class="col-lg-4 text-lg-end mt-3 mt-lg-0"><span class="hero-icon">✚</span></div>
+    </div>
+</section>
+
+@if (TempData["SuccessMessage"] is string success)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @success
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (ViewBag.PatientName is string patientName && !string.IsNullOrWhiteSpace(patientName))
+{
+    <div class="alert alert-info">Welcome back, <strong>@patientName</strong>! Your name is remembered using a cookie.</div>
+}
+@if (ViewBag.SelectedSpecialization is string specialization && !string.IsNullOrWhiteSpace(specialization))
+{
+    <p class="text-secondary small">Last selected specialization (session): <strong>@specialization</strong></p>
+}
+
+<div class="d-flex justify-content-between align-items-end mb-3">
+    <div><h2 class="h3 fw-bold mb-1">Our Doctors</h2><p class="text-secondary mb-0">Consultation total includes a ₹100 service charge.</p></div>
+    <span class="badge text-bg-light border">@Model.Count specialists</span>
+</div>
+
+<div class="row g-3">
+@foreach (var doctor in Model)
+{
+    <div class="col-md-6 col-xl-4">
+        <div class="card doctor-card h-100 border-0 shadow-sm">
+            <div class="card-body p-4">
+                <div class="doctor-avatar mb-3">✚</div>
+                <h3 class="h5 fw-bold mb-1">@doctor.DoctorName</h3>
+                <span class="badge rounded-pill text-bg-primary-subtle text-primary-emphasis mb-3">@doctor.Specialization</span>
+                <p class="text-secondary mb-2">@doctor.Experience years of experience</p>
+                <div class="fee-line"><span>Consultation fee</span><strong>₹@doctor.ConsultationFee.ToString("N0")</strong></div>
+                <div class="fee-line total"><span>Total with service charge</span><strong>₹@doctor.CalculateTotalCharge().ToString("N0")</strong></div>
+                <div class="d-flex gap-2 mt-4">
+                    <a class="btn btn-outline-primary flex-fill" asp-controller="Doctors" asp-action="Details" asp-route-id="@doctor.DoctorId">Details</a>
+                    <a class="btn btn-primary flex-fill" asp-controller="Doctors" asp-action="Appointment" asp-route-doctorId="@doctor.DoctorId">Book appointment</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+</div>
+<div class="mt-4 small text-secondary">Doctor list is cached in memory for 3 minutes using IMemoryCache.</div>

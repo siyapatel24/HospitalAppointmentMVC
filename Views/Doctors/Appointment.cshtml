@@ -1,0 +1,42 @@
+@model AppointmentRequest
+@{
+    ViewData["Title"] = "Request Appointment";
+    var doctor = ViewBag.Doctor as Doctor;
+}
+<div class="mb-3"><a asp-action="Index" class="text-decoration-none">← Back to doctors</a></div>
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-md-5">
+                <p class="text-uppercase small fw-bold text-primary mb-2">Appointment request</p>
+                <h1 class="h3 fw-bold">Book with @doctor?.DoctorName</h1>
+                <p class="text-secondary">@doctor?.Specialization · Total charge: <strong>₹@doctor?.CalculateTotalCharge().ToString("N2")</strong></p>
+                <form asp-action="Appointment" method="post">
+                    @Html.AntiForgeryToken()
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    <!-- Hidden field carries DoctorId when the form is submitted. -->
+                    <input asp-for="DoctorId" type="hidden" />
+                    <div class="mb-3">
+                        <label asp-for="PatientName" class="form-label">Patient name</label>
+                        <input asp-for="PatientName" class="form-control" placeholder="Enter your full name" />
+                        <span asp-validation-for="PatientName" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label">Email address</label>
+                        <input asp-for="Email" class="form-control" placeholder="you@example.com" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="AppointmentDate" class="form-label">Preferred date</label>
+                        <input asp-for="AppointmentDate" type="date" class="form-control" />
+                        <span asp-validation-for="AppointmentDate" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit request</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

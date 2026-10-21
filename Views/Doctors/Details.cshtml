@@ -1,0 +1,21 @@
+@model Doctor
+@{
+    ViewData["Title"] = "Doctor Details";
+}
+<div class="mb-3"><a asp-action="Index" class="text-decoration-none">← Back to doctors</a></div>
+<div class="card border-0 shadow-sm detail-card">
+    <div class="card-body p-4 p-md-5">
+        <div class="doctor-avatar mb-3">✚</div>
+        <span class="badge text-bg-primary-subtle text-primary-emphasis mb-2">@Model.Specialization</span>
+        <h1 class="h2 fw-bold">@Model.DoctorName</h1>
+        <p class="text-secondary">Doctor ID: @Model.DoctorId</p>
+        <hr />
+        <div class="row g-3">
+            <div class="col-sm-6"><div class="detail-tile"><span>Experience</span><strong>@Model.Experience years</strong></div></div>
+            <div class="col-sm-6"><div class="detail-tile"><span>Consultation fee</span><strong>₹@Model.ConsultationFee.ToString("N2")</strong></div></div>
+            <div class="col-12"><div class="detail-tile total-tile"><span>Total consultation charge (including ₹100 service charge)</span><strong>₹@Model.CalculateTotalCharge().ToString("N2")</strong></div></div>
+        </div>
+        <a class="btn btn-primary mt-4" asp-action="Appointment" asp-route-doctorId="@Model.DoctorId">Request appointment</a>
+    </div>
+</div>
+<p class="small text-secondary mt-3">This page uses Response Caching for 60 seconds. Doctor ID is passed in the query string.</p>
